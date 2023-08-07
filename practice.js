@@ -16,7 +16,7 @@ const number = {
 
 function objectLooper(obj) {
   for (const key in obj) {
-    key = 0
+    obj[key] = 0
   }
   return obj;
 }
@@ -36,7 +36,9 @@ const state = {
 
 function stateLooper(obj) {
   for (const key in obj) {
-    // REPLACE THIS WITH YOUR CODE
+   if (obj[key] > 3000000){
+    obj[key] = 0
+   }
   }
   return obj;
 }
@@ -49,7 +51,10 @@ function stateLooper(obj) {
 
 function cleanUser(obj) {
   // REPLACE THIS WITH YOUR CODE
-
+for (let key in obj){
+  if (!obj[key])
+  delete obj[key]
+}
   return obj;
 }
 
@@ -60,8 +65,10 @@ function cleanUser(obj) {
 // Return the updated user object.
 
 function maxedOut(user) {
-  // REPLACE THIS WITH YOUR CODE
+for (const key in user) {
 
+  user[key] = 'max'
+}
   return user;
 }
 
@@ -79,7 +86,7 @@ const animalCount = {
 
 // Use object destructuring syntax to create variables for each of the properties of the
 // animalCount object.
-
+const {cats, dogs, mice} = animalCount
 // REPLACE THIS WITH YOUR CODE
 
 /// /////// PROBLEM 6 //////////
@@ -90,7 +97,13 @@ const animalCount = {
 // Then destructure the properties into separate variables
 
 // REPLACE THIS WITH YOUR CODE
+const obj = {
+  students: 24, 
+  mentors: 3, 
+  instructors: 5
+}
 
+const {students, mentors, instructors} = obj
 /// /////// PROBLEM 7 //////////
 
 // Create an object named languages with the properties 'french', 'english' and 'spanish'
@@ -98,7 +111,13 @@ const animalCount = {
 // Use destructuring to assign the values of these properties to new variables
 
 // REPLACE THIS WITH YOUR CODE
+const languages = {
+  french: false,
+  english: true,
+  spanish: true
+}
 
+const {french, english, spanish} = languages
 /// /////// PROBLEM 8 //////////
 
 // For this problem, write a function called subtraction with an object parameter
@@ -108,7 +127,10 @@ const animalCount = {
 // Subtract num2 from num1 and return the result
 
 // REPLACE THIS WITH YOUR CODE
-
+const subtraction = object => {
+  const {num1, num2} = object
+  return num1 - num2
+}
 /// /////// PROBLEM 9 //////////
 
 // Create a function called zooAnimals that will take an object parameter
@@ -117,7 +139,10 @@ const animalCount = {
 // Using object destructuring, return the total sum of the counts of these animals
 
 // REPLACE THIS WITH YOUR CODE
-
+const zooAnimals = object => {
+  const {lion, tiger, bear} = object
+  return lion + tiger + bear
+}
 /// /////// PROBLEM 10 //////////
 
 // Now that you've practiced object destructuring inside of a function with that
@@ -146,7 +171,9 @@ const animalCount = {
 // destructured object variables.
 
 // REPLACE THIS WITH YOUR CODE
-
+const greeting = ({name, title}) => {
+  return `Hello, ${title} ${name}!`
+}
 /// /////// PROBLEM 11 //////////
 
 // Create a function called truthyFalsy that takes a destructured object as its
@@ -154,7 +181,13 @@ const animalCount = {
 // properties will be truthy and the other will be falsy Return the value that is truthy.
 
 // REPLACE THIS WITH YOUR CODE
-
+const truthyFalsy = ({number, string}) => {
+  if (number) {
+    return number
+  } else {
+    return string
+  }
+}
 /// /////// PROBLEM 12 //////////
 
 // Create a one line ES6 arrow function called isGreaterThanTwenty that will take in a
@@ -167,7 +200,7 @@ const animalCount = {
 // Your function should also be contained within a single line
 
 // REPLACE THIS WITH YOUR CODE
-
+const isGreaterThanTwenty = (par) => {return par > 20 ? true : false}
 /// /////// PROBLEM 13 //////////
 
 // Create a one line arrow function called seven that will return the number 7
@@ -177,7 +210,7 @@ const animalCount = {
 // Your function should also be contained within a single line
 
 // REPLACE THIS WITH YOUR CODE
-
+const seven = () => 7
 /// /////// PROBLEM 14 //////////
 
 // Re-write the commented out ES5 functions provided below as ES6 arrow functions
@@ -191,19 +224,23 @@ const animalCount = {
 //   return num1 + num2;
 // }
 
-// REPLACE THIS WITH YOUR CODE
+const add = (num1,num2) => num1 + num2
+
 
 // function subtract(num1, num2) {
 //   return num1 - num2;
 // }
 
-// REPLACE THIS WITH YOUR CODE
+const subtract = (num1,num2) => num1 - num2
+
 
 // function double(num) {
 //   return num * 2;
 // }
 
-// REPLACE THIS WITH YOUR CODE
+const double = num => num*2
+
+
 
 /// /////// PROBLEM 15 //////////
 
@@ -215,7 +252,7 @@ const animalCount = {
 // final solution.
 
 // REPLACE THIS WITH YOUR CODE
-
+const multiply = (num1,num2) => num1 * num2
 /// /////// PROBLEM 16 //////////
 
 // Create an ES6 arrow function called concatenate that takes in two parameters: str1
@@ -226,7 +263,7 @@ const animalCount = {
 // final solution.
 
 // REPLACE THIS WITH YOUR CODE
-
+const concatenate = (str1,str2) => `${str1}${str2}`
 /// /////// PROBLEM 17 //////////
 
 // Write an arrow function called gemInfo that takes in three parameters: gemType,
@@ -238,7 +275,13 @@ const animalCount = {
 // final solution.
 
 // REPLACE THIS WITH YOUR CODE
-
+const gemInfo = (gemType, gemSize, gemWeight) => {
+  return newGem = {
+    gemType,
+    gemSize,
+    gemWeight
+  }
+}
 /// /////// PROBLEM 18 //////////
 
 // Create a function called identifier that uses the filter higher order array method to
@@ -257,7 +300,11 @@ const jobs = [{ receptionist: 'James' }, { programmer: 'Steve' }, { designer: 'A
 // Do not edit the code above.
 
 // REPLACE THIS WITH YOUR CODE
-
+const identifier =(jobs) => {
+  const result = jobs.filter((job, index) => job.programmer)
+  return result[0]
+}
+// const newJobs = jobs.filter()
 /// /////// PROBLEM 19 //////////
 
 // Create a function called evens that takes in an array as a parameter.
@@ -271,7 +318,10 @@ const jobs = [{ receptionist: 'James' }, { programmer: 'Steve' }, { designer: 'A
 // You should not use a for loop, but should use the filter method instead.
 
 // REPLACE THIS WITH YOUR CODE
-
+const evens = (arr) => {
+  const result = arr.filter((num) => num %2 === 0)
+  return result
+}
 /// /////// PROBLEM 20 //////////
 
 // Create a function called startWithLetterA that takes in an array as a parameter.
@@ -287,7 +337,7 @@ const jobs = [{ receptionist: 'James' }, { programmer: 'Steve' }, { designer: 'A
 // You should not use a for loop, but should use the filter method instead.
 
 // REPLACE THIS WITH YOUR CODE
-
+const startWithLetterA = (arr) => arr.filter(word => word.toLowerCase().startsWith('a'))
 /// /////// PROBLEM 21 //////////
 
 // Edit the formalGreeting function and use the built in .map method to map over the
@@ -296,7 +346,9 @@ const jobs = [{ receptionist: 'James' }, { programmer: 'Steve' }, { designer: 'A
 // Make sure to use arrow functions combined with the map method.
 
 // REPLACE THIS WITH YOUR CODE
+const formalGreeting = (names) => {
 
+}
 /// /////// PROBLEM 22 //////////
 
 // Edit the productOfArray function and use the built in .reduce method to loop over the
